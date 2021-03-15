@@ -1,0 +1,48 @@
+/* blue color - #199bd7 */
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#mainContent{
+    width: 500px;
+    margin: auto;
+}
+
+#tableOptions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#tableOptions div{
+    height: 20px;
+    display: flex;
+}
+
+#perPage{
+    width: 40px;
+}
+
+table{
+    width: 100%;
+}
+
+table img{
+    width: 100px;
+    transition-duration: .02s;
+}
+
+table img:hover{
+    transform: scale(1.02);
+}
+
+table{
+    border-collapse: collapse;
+}
+
+td, th{
+    border: 1px solid black;
+    padding: 0.5rem;
+}

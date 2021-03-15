@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planday challenge</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -13,6 +14,29 @@
         <h1>Planday challenge</h1>
         <h2>by Constantin Guiu</h2>
     </header>
+    <div id="mainContent">
+        <div id="tableOptions">
+            <div>
+                <label for="search">Search:</label>
+                <input type="text" id="search">
+            </div>
+            <div>
+                <p>Show</p>
+                <select onchange="changePerPage()" name="items" id="perPage">
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6" selected>6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                <p>items</p>
+            </div>
+        </div>
+        <table id="mainTable">
+        </table>
+    </div>
 </body>
 <script src="main.js"></script>
+
 </html>
