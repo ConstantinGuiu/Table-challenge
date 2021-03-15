@@ -6,43 +6,46 @@ let perPage = document.getElementById("perPage").value // will be used to show h
 let localData // just a variable to keep the received data from the JSON
 
 // creating an async function to get the data from the JSON
-async function getData(){
+async function getData() {
     const response = await fetch("data.json")
     let data = await response.json();
     processData(data)
 }
 
-function processData(data){
+function processData(data) {
     // saving data from the JSON to a global variable in order to access it later
     localData = data
     showData()
+    addPageButtons()
+    changePage(x)
 }
 
-function showData(){
+function showData() {
     let data = []
-    for(i in localData){
+    for (i in localData) {
         data.push(localData[i])
     }
     // calculating the number of pages
-    totalPages = Math.ceil(data.length/perPage)
+    totalPages = Math.ceil(data.length / perPage)
 
     // keeping in the local data variable only the elements that needs to be shown
-    let elementsToRemove = (currentPage-1)*perPage
-    data.splice(0,elementsToRemove)
+    let elementsToRemove = (currentPage - 1) * perPage
+    data.splice(0, elementsToRemove)
     data.splice(perPage)
 
     processTable(data)
 }
 
-function changePerPage(x){
+function changePerPage(x) {
     perPage = document.getElementById("perPage").value
     showData()
+    addPageButtons()
 }
 
-function processTable(data){
+function processTable(data) {
     let table = document.getElementById("mainTable");
     table.innerHTML = ''
-    
+
     //create a header table row and table headers
     let thr = document.createElement("tr")
     let titleHeader = document.createElement("th")
@@ -62,7 +65,7 @@ function processTable(data){
     // appending table row to the table tag from HTML
     table.appendChild(thr)
 
-    for(i in data){
+    for (i in data) {
         let tr = document.createElement("tr");
         let title = document.createElement('td')
         let descr = document.createElement('td')
@@ -82,15 +85,43 @@ function processTable(data){
     }
 }
 
-function changePage(x){
-    if(x === 'prev'){
-        currentPage--
-    } else if (x === 'next'){
-        currentPage++
-    } else if (x === 'last'){
-        currentPage = totalPages
-    } else if(typeof x == "number"){
-        currentPage=x
+function addPageButtons(){
+    let allBtns = document.getElementById('allBtns')
+}
+
+// a function that changes the pages of the table based on a value
+function changePage(x) {
+    if (x === 'prev') { // if the value is equal to 'prev'
+        currentPage-- // it subtracts 1 from the currentPage variable
+    } else if (x === 'next') { // if the value is equal to 'next'
+        currentPage++ // it adds 1 from the currentPage variable
+    } else if (x === 'last') { // if the value is equal to 'next'
+        currentPage = totalPages // it adds 1 from the currentPage variable
+    } else if (typeof x == "number") { // if the value is equal to 'next'
+        currentPage = x // it adds 1 from the currentPage variable
     }
+
+    // check if user is on the first or last page
+    // so those buttons will be disabled
+
+    let frontState = false
+    let endState = false
+
+    if (currentPage === 1) {
+        frontState = true
+    } else if (currentPage === totalPages) {
+        endState = true
+    }
+
+    // disable the buttons
+    let front = document.getElementsByClassName("front-extremity")
+    for (i = 0; i < front.length; i++) {
+        front[i].disabled = frontState
+    }
+    let end = document.getElementsByClassName("end-extremity")
+    for (i = 0; i < end.length; i++) {
+        end[i].disabled = endState
+    }
+
     showData()
 }
