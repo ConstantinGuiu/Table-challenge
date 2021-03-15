@@ -1,8 +1,11 @@
 getData() // calling the main function to get the JSON
 
+document.onkeydown = keyPressed;
+
 // assigning document elements to variables
 let noResultsDiv = document.getElementById("noResultsFound")
 let perPageDiv = document.getElementById("perPage")
+let userInput = document.getElementById('search')
 
 // declaring different variables
 let currentPage = 1 // default page of the table set to 1
@@ -108,9 +111,13 @@ function addPageButtons() {
 // a function that changes the pages of the table based on a value
 function changePage(x) {
     if (x === 'prev') { // if the value is equal to 'prev'
-        currentPage-- // it subtracts 1 from the currentPage variable
+        if(currentPage>1){
+            currentPage-- // it subtracts 1 from the currentPage variable
+        }    
     } else if (x === 'next') { // if the value is equal to 'next'
-        currentPage++ // it adds 1 from the currentPage variable
+        if(currentPage!==totalPages){
+            currentPage++ // it adds 1 from the currentPage variable
+        }
     } else if (x === 'last') { // if the value is equal to 'next'
         currentPage = totalPages // it adds 1 from the currentPage variable
     } else if (typeof x == "number") { // if the value is equal to 'next'
@@ -158,15 +165,15 @@ function stylePageBtns() {
 function search() {
     properData = []
     let noResults = false
-    let userInput = document.getElementById('search').value
+    let userInputValue = userInput.value
     localRawData.forEach(el => {
-        let checkTitle = el.title.toUpperCase().includes(userInput.toUpperCase())
-        let checkDescr = el.description.toUpperCase().includes(userInput.toUpperCase())
+        let checkTitle = el.title.toUpperCase().includes(userInputValue.toUpperCase())
+        let checkDescr = el.description.toUpperCase().includes(userInputValue.toUpperCase())
         if (checkTitle || checkDescr) {
             properData.push(el)
         }
     });
-    if(userInput.length != 0){
+    if(userInputValue.length != 0){
         if (properData.length === 0) {
             noResults = true
         }
@@ -179,10 +186,27 @@ function search() {
     changePage(1)
 }
 
+// function that shows or hide the "No results found" div based on a boolean value
 function noResultsFound(noResults){
     if(noResults){
         noResultsDiv.style.display = 'flex'
     } else {
         noResultsDiv.style.display = 'none'
+    }
+}
+
+// keyboard friendly function that runs everytime the user presses a key
+function keyPressed(e) {
+    console.log(e.keyCode)
+    if(e.keyCode == 34){
+        changePage('next')
+    } else if (e.keyCode == 33){
+        changePage('prev')
+    } else if (e.keyCode == 36){
+        changePage(1)
+    } else if (e.keyCode == 35){
+        changePage('last')
+    } else if (e.keyCode == 13){
+        userInput.focus()
     }
 }
