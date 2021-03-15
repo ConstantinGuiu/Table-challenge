@@ -61,3 +61,7 @@ td, th{
 #allBtns{
     display: flex;
 }
+
+.selectedBtn{
+    background-color: burlywood;
+}
