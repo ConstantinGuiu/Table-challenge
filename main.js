@@ -1,11 +1,10 @@
 getData() // calling the main function to get the JSON
 
-document.onkeydown = keyPressed;
-
 // assigning document elements to variables
-let noResultsDiv = document.getElementById("noResultsFound")
-let perPageDiv = document.getElementById("perPage")
-let userInput = document.getElementById('search')
+const noResultsDiv = document.getElementById("noResultsFound")
+const perPageDiv = document.getElementById("perPage")
+const userInput = document.getElementById('search')
+const addBtn = document.getElementById('addElement')
 
 // declaring different variables
 let currentPage = 1 // default page of the table set to 1
@@ -13,6 +12,9 @@ let totalPages // will assign a number of pages based on how much data needs to 
 let perPage = perPageDiv.value // will be used to show how many items will be shown on the table at once
 let locaRawlData // just a variable to keep the received data from the JSON
 
+// add event listeners
+addBtn.addEventListener("click", openAddModal)
+document.onkeydown = keyPressed;
 
 // creating an async function to get the data from the JSON
 async function getData() {
@@ -197,16 +199,26 @@ function noResultsFound(noResults){
 
 // keyboard friendly function that runs everytime the user presses a key
 function keyPressed(e) {
-    console.log(e.keyCode)
+    // console.log(e.keyCode)
     if(e.keyCode == 34){
-        changePage('next')
+        changePage('next')      // PageDown key - next table page
     } else if (e.keyCode == 33){
-        changePage('prev')
+        changePage('prev')      // PageUp key - previous table page
     } else if (e.keyCode == 36){
-        changePage(1)
+        changePage(1)           // Home key - first table page
     } else if (e.keyCode == 35){
-        changePage('last')
+        changePage('last')      // End key - last table page
     } else if (e.keyCode == 13){
-        userInput.focus()
+        // userInput.focus()       // Enter key - select the search input
+    } else if (e.keyCode == 45){
+        openAddModal()          // Insert key - add another element
     }
+}
+
+// add another element functions
+function openAddModal(){
+    console.log("hey")
+}
+function addElement(){
+    console.log("added")
 }
