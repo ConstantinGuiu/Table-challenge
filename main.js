@@ -1,9 +1,15 @@
 getData() // calling the main function to get the JSON
 
+// assigning document elements to variables
+let noResultsDiv = document.getElementById("noResultsFound")
+let perPageDiv = document.getElementById("perPage")
+
+// declaring different variables
 let currentPage = 1 // default page of the table set to 1
 let totalPages // will assign a number of pages based on how much data needs to be shown
-let perPage = document.getElementById("perPage").value // will be used to show how many items will be shown on the table at once
-let localData // just a variable to keep the received data from the JSON
+let perPage = perPageDiv.value // will be used to show how many items will be shown on the table at once
+let locaRawlData // just a variable to keep the received data from the JSON
+
 
 // creating an async function to get the data from the JSON
 async function getData() {
@@ -14,30 +20,32 @@ async function getData() {
 
 function processData(data) {
     // saving data from the JSON to a global variable in order to access it later
-    localData = data
+    localRawData = data
+    properData = localRawData
     showData()
-    addPageButtons()
     changePage(1)
 }
 
 function showData() {
     let data = []
-    for (i in localData) {
-        data.push(localData[i])
+    for (i in properData) {
+        data.push(properData[i])
     }
     // calculating the number of pages
     totalPages = Math.ceil(data.length / perPage)
-
+    
     // keeping in the local data variable only the elements that needs to be shown
     let elementsToRemove = (currentPage - 1) * perPage
     data.splice(0, elementsToRemove)
     data.splice(perPage)
-
+    
+    addPageButtons()
     processTable(data)
+    stylePageBtns()
 }
 
 function changePerPage(x) {
-    perPage = document.getElementById("perPage").value
+    perPage = perPageDiv.value
     showData()
     addPageButtons()
 }
@@ -86,16 +94,15 @@ function processTable(data) {
 }
 
 // add buttons based on how many pages there are
-function addPageButtons(){
+function addPageButtons() {
     let allBtns = document.getElementById('allBtns')
-    allBtns.innerHTML = ''  // first remove all the previous buttons (if any)
-    for(i=1; i<=totalPages; i++){
-        let btn = document.createElement("button")  // create a button element
+    allBtns.innerHTML = '' // first remove all the previous buttons (if any)
+    for (i = 1; i <= totalPages; i++) {
+        let btn = document.createElement("button") // create a button element
         btn.setAttribute('onclick', `changePage(${i})`) // give the attribute for onclick to call the "changePage()" function
-        btn.innerHTML = i   // also the text of the button
-        allBtns.appendChild(btn)    // append the button to the buttons div in HTML
+        btn.innerHTML = i // also the text of the button
+        allBtns.appendChild(btn) // append the button to the buttons div in HTML
     }
-    changePage(1)
 }
 
 // a function that changes the pages of the table based on a value
@@ -109,21 +116,20 @@ function changePage(x) {
     } else if (typeof x == "number") { // if the value is equal to 'next'
         currentPage = x // it adds 1 from the currentPage variable
     }
-
-    stylePageBtns()
     showData()
 }
 
-function stylePageBtns(){
+function stylePageBtns() {
     // check if user is on the first or last page
     // so those buttons will be disabled
-    
+
     let frontState = false
     let endState = false
-    
+
     if (currentPage === 1) {
         frontState = true
-    } else if (currentPage === totalPages) {
+    }
+    if (currentPage === totalPages) {
         endState = true
     }
 
@@ -136,15 +142,47 @@ function stylePageBtns(){
     for (i = 0; i < end.length; i++) {
         end[i].disabled = endState
     }
-
     // adding a class to the selected page button
     let numberedBtns = document.getElementById('allBtns').getElementsByTagName('button')
-    for(i=0; i<numberedBtns.length; i++){
-        if(i==currentPage-1){
+    for (i = 0; i < numberedBtns.length; i++) {
+        if (i == currentPage - 1) {
             numberedBtns[i].classList.add('selectedBtn')
-        } else{
+        } else {
             numberedBtns[i].classList.remove('selectedBtn')
         }
     }
 
+}
+
+// function that loops through all data and filter based on user input
+function search() {
+    properData = []
+    let noResults = false
+    let userInput = document.getElementById('search').value
+    localRawData.forEach(el => {
+        let checkTitle = el.title.toUpperCase().includes(userInput.toUpperCase())
+        let checkDescr = el.description.toUpperCase().includes(userInput.toUpperCase())
+        if (checkTitle || checkDescr) {
+            properData.push(el)
+        }
+    });
+    if(userInput.length != 0){
+        if (properData.length === 0) {
+            noResults = true
+        }
+        
+    } else {
+        properData = localRawData
+    }
+    noResultsFound(noResults)
+    showData()
+    changePage(1)
+}
+
+function noResultsFound(noResults){
+    if(noResults){
+        noResultsDiv.style.display = 'flex'
+    } else {
+        noResultsDiv.style.display = 'none'
+    }
 }

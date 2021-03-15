@@ -19,7 +19,7 @@
         <div id="tableOptions">
             <div>
                 <label for="search">Search:</label>
-                <input type="text" id="search">
+                <input oninput="search()" type="text" id="search">
             </div>
             <div>
                 <p>Show</p>
@@ -31,20 +31,20 @@
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-                <p>items</p>
+                <p>items out of</p>
+                <p id="totalResults"></p>
             </div>
         </div>
         <table id="mainTable">
         </table>
+        <div id="noResultsFound">
+            <span class="material-icons">not_listed_location</span>
+            <p>Sorry! There is no item with that criteria yet...</p>
+        </div>
         <div id="pagesButtons">
             <button onclick="changePage(1)" class="material-icons front-extremity">first_page</button>
             <button onclick="changePage('prev')" class="material-icons front-extremity">chevron_left</button>
-            <div id="allBtns">
-                <button onclick="changePage(1)">1</button>
-                <button onclick="changePage(2)">2</button>
-                <button onclick="changePage(3)">3</button>
-                <button onclick="changePage(4)">4</button>
-            </div>
+            <div id="allBtns"></div>
             <button onclick="changePage('next')" class="material-icons end-extremity">chevron_right</button>
             <button onclick="changePage('last')" class="material-icons end-extremity">last_page</button>
         </div>

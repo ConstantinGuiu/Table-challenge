@@ -48,6 +48,10 @@ td, th{
     padding: 0.5rem;
 }
 
+#noResultsFound{
+    display: none;
+}
+
 #pagesButtons{
     display: flex;
     justify-content: center;
