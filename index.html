@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planday challenge</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -35,6 +36,18 @@
         </div>
         <table id="mainTable">
         </table>
+        <div id="pagesButtons">
+            <button onclick="changePage(1)" class="material-icons">first_page</button>
+            <button onclick="changePage('prev')" class="material-icons">chevron_left</button>
+            <div id="allBtns">
+                <button onclick="changePage(1)">1</button>
+                <button onclick="changePage(2)">2</button>
+                <button onclick="changePage(3)">3</button>
+                <button onclick="changePage(4)">4</button>
+            </div>
+            <button onclick="changePage('next')" class="material-icons">chevron_right</button>
+            <button onclick="changePage('last')" class="material-icons">last_page</button>
+        </div>
     </div>
 </body>
 <script src="main.js"></script>

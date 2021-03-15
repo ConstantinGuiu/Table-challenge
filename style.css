@@ -30,7 +30,8 @@ table{
 }
 
 table img{
-    width: 100px;
+    max-width: 100px;
+    max-height: 100px;
     transition-duration: .02s;
 }
 
@@ -45,4 +46,18 @@ table{
 td, th{
     border: 1px solid black;
     padding: 0.5rem;
+}
+
+#pagesButtons{
+    display: flex;
+    justify-content: center;
+}
+
+#pagesButtons button{
+    height: 30px;
+    width: 30px;
+}
+
+#allBtns{
+    display: flex;
 }

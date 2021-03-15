@@ -64,7 +64,6 @@ function processTable(data){
 
     for(i in data){
         let tr = document.createElement("tr");
-        
         let title = document.createElement('td')
         let descr = document.createElement('td')
         let imgDiv = document.createElement('td')
@@ -79,7 +78,19 @@ function processTable(data){
         tr.appendChild(title)
         tr.appendChild(descr)
         tr.appendChild(imgDiv)
-
         table.appendChild(tr)
     }
+}
+
+function changePage(x){
+    if(x === 'prev'){
+        currentPage--
+    } else if (x === 'next'){
+        currentPage++
+    } else if (x === 'last'){
+        currentPage = totalPages
+    } else if(typeof x == "number"){
+        currentPage=x
+    }
+    showData()
 }
