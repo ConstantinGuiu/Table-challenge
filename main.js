@@ -9,6 +9,9 @@ const totalResults = document.getElementById('totalResults')
 const titleForm = document.getElementById('titleForm')
 const descriptionForm = document.getElementById('descriptionForm')
 const imageForm = document.getElementById('imageForm')
+const form = document.getElementById("myForm")
+const fade = document.getElementById("pageFade")
+const formWarn = document.getElementById("formWarn")
 
 // declaring different variables
 let currentPage = 1 // default page of the table set to 1
@@ -16,6 +19,7 @@ let totalPages // will assign a number of pages based on how much data needs to 
 let perPage = perPageDiv.value // will be used to show how many items will be shown on the table at once
 let locaRawlData // just a variable to keep the received data from the JSON
 let properData
+let modalOpened = false
 
 // add event listeners
 addBtn.addEventListener("click", openAddModal)
@@ -225,37 +229,69 @@ function noResultsFound(noResults) {
 // keyboard friendly function that runs everytime the user presses a key
 function keyPressed(e) {
     // console.log(e.keyCode)
-    if (e.keyCode == 39) {
+    if (e.keyCode == 39 && !modalOpened) {
         changePage('next') // Right arrow key - next table page
-    } else if (e.keyCode == 37) {
+    } else if (e.keyCode == 37 && !modalOpened) {
         changePage('prev') // Left arrow key - previous table page
-    } else if (e.keyCode == 36 || e.keyCode == 38) {
+    } else if ((e.keyCode == 36 || e.keyCode == 38) && !modalOpened) {
         changePage(1) // Home key - first table page
-    } else if (e.keyCode == 35 || e.keyCode == 40) {
+    } else if ((e.keyCode == 35 || e.keyCode == 40) && !modalOpened) {
         changePage('last') // End key - last table page
     } else if (e.keyCode == 13) {
         // userInput.focus()       // Enter key - select the search input
     } else if (e.keyCode == 45) {
         openAddModal() // Insert key - add another element
+    } else if (e.keyCode == 27) {
+        closeModal()
     }
 }
 
 // add another element functions
 function openAddModal() {
-    console.log("hey")
+    modalOpened = true
+    formWarn.style.display = "none"
+    form.style.display = "block"
+    fade.style.display = "block"
+    form.style.zIndex = 1
+    fade.style.zIndex = 1
+
+    form.classList.add("myFormDispalyed")
+    fade.classList.add("pageFadeDisplayed")
+
+    titleForm.focus()
 }
 
 function addElement() {
-    let title = titleForm.value
-    let descr = descriptionForm.value
-    let img = imageForm.value
+    const title = titleForm.value
+    const descr = descriptionForm.value
+    const img = imageForm.value
 
-    let newElement = {
-        title: title,
-        description: descr,
-        imagePath: img
+    if (title.length > 0) {
+        formWarn.style.display = "none"
+        const newElement = {
+            title: title,
+            description: descr,
+            imagePath: img
+        }
+
+        titleForm.value = ''
+        descriptionForm.value = ''
+        imageForm.value = ''
+        properData.unshift(newElement)
+        closeModal()
+        showData()
+    } else {
+        formWarn.style.display = "block"
     }
+}
 
-    properData.unshift(newElement)
-    showData()
+
+
+function closeModal() {
+    modalOpened = false
+    form.classList.remove("myFormDispalyed")
+    fade.classList.remove("pageFadeDisplayed")
+    setTimeout(200)
+    form.style.zIndex = -1
+    fade.style.zIndex = -1
 }
