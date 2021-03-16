@@ -8,6 +8,7 @@
     <title>Planday challenge</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
@@ -20,7 +21,7 @@
             <div>
                 <input oninput="search()" type="text" id="search" class="noFocus" placeholder="Search">
             </div>
-            <div>
+            <div id="rightOptions">
                 <p>Show</p>
                 <select onchange="changePerPage()" name="items" id="perPage">
                     <option value="4">4</option>
@@ -49,18 +50,19 @@
         </div>
     </div>
     <button id="addElement"><span class="material-icons">add_circle_outline</span> Add element</button>
+    <div id="myForm">
+        <label for="titleForm">Title*</label>
+        <input class="formInput" name="title" type="text" id="titleForm">
+        <label for="descriptionForm">Description</label>
+        <textarea class="formInput" name="description" type="text" id="descriptionForm"></textarea>
+        <label for="imageForm">Image</label>
+        <input class="formInput" name="image" type="text" id="imageForm">
+        <p id="formWarn">Please add a title in order to submit!</p>
+        <button onclick="addElement()">Submit element</button>
+    </div>
+    <div id="pageFade" onclick="closeModal()"></div>
+    <div id="footerDiv"></div>
 </body>
-<div id="myForm">
-    <label for="titleForm">Title*</label>
-    <input class="formInput" name="title" type="text" id="titleForm">
-    <label for="descriptionForm">Description</label>
-    <textarea class="formInput" name="description" type="text" id="descriptionForm"></textarea>
-    <label for="imageForm">Image</label>
-    <input class="formInput" name="image" type="text" id="imageForm">
-    <p id="formWarn">Please add a title in order to submit!</p>
-    <button onclick="addElement()">Submit element</button>
-</div>
-<div id="pageFade" onclick="closeModal()"></div>
 <script src="main.js"></script>
 
 </html>

@@ -25,7 +25,7 @@ header h1 {
 }
 
 header h2 {
-    font-family: avenirRoman;
+    font-family: "roboto";
     color: #189AD6;
     text-align: end;
     width: 300px;
@@ -35,11 +35,12 @@ header h2 {
 #mainContent {
     width: 500px;
     margin: 30px auto;
-    font-family: avenirRoman;
+    font-family: "roboto";
     background-color: #fff;
     padding: 20px;
     box-shadow: 0px 0px 8px rgb(206, 206, 206);
     border-radius: 4px;
+    color: rgb(87, 87, 87);
 }
 
 #tableOptions {
@@ -47,6 +48,7 @@ header h2 {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 20px 0;
+    font-size: .8rem;
 }
 
 #tableOptions div {
@@ -59,6 +61,11 @@ header h2 {
     border-radius: 4px;
     background-color: rgb(242, 244, 245);
     text-indent: 5px;
+}
+
+#rightOptions{
+    display: flex;
+    align-items: center;
 }
 
 #perPage {
@@ -86,12 +93,13 @@ th {
     text-align: left;
 }
 
-.emptyRow{
+.emptyRow {
     height: 51px;
 }
 
 .dataRow td {
     border-bottom: 1px solid #dadfe3;
+    color: black;
 }
 
 
@@ -134,12 +142,13 @@ table img:hover {
 }
 
 #pagesButtons button {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
     border: 1px solid #dadfe3;
     border-radius: 4px;
     background-color: rgb(242, 244, 245);
     cursor: pointer;
+    font-size: 14px;
 }
 
 #allBtns {
@@ -161,11 +170,11 @@ table img:hover {
     cursor: pointer;
 }
 
-#addElement:hover{
+#addElement:hover {
     background-color: #1475a1;
 }
 
-#pageFade{
+#pageFade {
     position: fixed;
     top: 0;
     left: 0;
@@ -177,14 +186,14 @@ table img:hover {
     z-index: -5;
 }
 
-.pageFadeDisplayed{
+.pageFadeDisplayed {
     z-index: 10 !important;
     opacity: 1 !important;
 }
 
-#myForm{
+#myForm {
     position: fixed;
-    font-family: avenirRoman;
+    font-family: "roboto";
     width: 350px;
     flex-direction: column;
     justify-content: center;
@@ -203,19 +212,19 @@ table img:hover {
     z-index: -5;
 }
 
-.myFormDispalyed{
+.myFormDispalyed {
     z-index: 20 !important;
     opacity: 1 !important;
-    transform: translate(-50%, -50%)!important;
+    transform: translate(-50%, -50%) !important;
 }
 
-#myForm label{
+#myForm label {
     font-size: 1.1rem;
 }
 
-.formInput{
+.formInput {
     color: #16222D;
-    font-family: avenirRoman;
+    font-family: "roboto";
     width: 100%;
     max-width: 100%;
     min-width: 100%;
@@ -227,7 +236,7 @@ table img:hover {
     margin-bottom: 15px;
 }
 
-#descriptionForm{
+#descriptionForm {
     min-height: 70px;
     height: 70px;
 }
@@ -236,14 +245,14 @@ table img:hover {
     outline: none;
 }
 
-#formWarn{
+#formWarn {
     color: red;
     font-style: italic;
     text-align: center;
     font-size: .8rem;
 }
 
-#myForm button{
+#myForm button {
     align-items: center;
     justify-content: center;
     display: flex;
@@ -257,15 +266,15 @@ table img:hover {
     transition-duration: .15s;
     cursor: pointer;
     margin-top: 15px;
+    margin-bottom: 50px;
 }
 
-#myForm button:hover{
+#myForm button:hover {
     background-color: #1475a1;
 }
 
-@font-face {
-    font-family: avenirRoman;
-    src: url(/assets/AvenirLTStd-Roman.otf);
+#footerDiv{
+    height: 50px;
 }
 
 @font-face {
