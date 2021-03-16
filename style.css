@@ -1,71 +1,121 @@
 /* blue color - #199bd7 */
 
-*{
+* {
     padding: 0;
     margin: 0;
 }
 
-#mainContent{
-    width: 500px;
-    margin: auto;
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #16222D;
 }
 
-#tableOptions{
+header h1 {
+    font-family: avenirBold;
+    text-align: center;
+    width: 300px;
+    font-size: 2rem;
+}
+
+header h2 {
+    font-family: avenirRoman;
+    color: #189AD6;
+    text-align: end;
+    width: 300px;
+    font-size: 1.1rem;
+}
+
+#mainContent {
+    width: 500px;
+    margin: auto;
+    font-family: avenirRoman;
+}
+
+#tableOptions {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 20px 0 5px 0;
 }
 
-#tableOptions div{
+#tableOptions div {
     height: 20px;
     display: flex;
 }
 
+#search{
+    border: 1px solid #dadfe3;
+    border-radius: 4px;
+    background-color: rgb(242, 244, 245);
+    text-indent: 5px;
+}
+
 #perPage{
+    border: 1px solid #dadfe3;
+    border-radius: 4px;
+    background-color: rgb(242, 244, 245);
+    margin: auto 5px;
+}
+
+#perPage {
     width: 40px;
 }
 
-table{
+table {
     width: 100%;
 }
 
-table img{
-    max-width: 100px;
-    max-height: 100px;
-    transition-duration: .02s;
+th{
+    text-align: left;
 }
 
-table img:hover{
+.elementImage {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    transition-duration: .02s;
+    background-size: cover;
+    background-position: center;
+}
+
+table img:hover {
     transform: scale(1.02);
 }
 
-table{
-    border-collapse: collapse;
-}
-
-td, th{
-    border: 1px solid black;
-    padding: 0.5rem;
-}
-
-#noResultsFound{
+#noResultsFound {
     display: none;
 }
 
-#pagesButtons{
+#pagesButtons {
     display: flex;
     justify-content: center;
 }
 
-#pagesButtons button{
+#pagesButtons button {
     height: 30px;
     width: 30px;
 }
 
-#allBtns{
+#allBtns {
     display: flex;
 }
 
-.selectedBtn{
+.selectedBtn {
     background-color: burlywood;
+}
+
+.noFocus:focus-within {
+    outline: none;
+}
+
+@font-face {
+    font-family: avenirRoman;
+    src: url(/assets/AvenirLTStd-Roman.otf);
+}
+
+@font-face {
+    font-family: avenirBold;
+    src: url(/assets/AvenirLTStd-Black.otf);
 }

@@ -68,12 +68,11 @@ function processTable(data) {
     // adding values for headers
     titleHeader.innerHTML = "Title"
     descrHeader.innerHTML = "Description"
-    imageHeader.innerHTML = "Image"
 
     // appending table headers to the table row
+    thr.appendChild(imageHeader)
     thr.appendChild(titleHeader)
     thr.appendChild(descrHeader)
-    thr.appendChild(imageHeader)
 
     // appending table row to the table tag from HTML
     table.appendChild(thr)
@@ -87,13 +86,12 @@ function processTable(data) {
         title.innerHTML = data[i].title
         descr.innerHTML = data[i].description
 
-        let img = document.createElement('img')
-        img.src = data[i].imagePath
-        imgDiv.appendChild(img)
+        imgDiv.classList.add("elementImage")
+        imgDiv.style.backgroundImage = `url(${data[i].imagePath})`
 
+        tr.appendChild(imgDiv)
         tr.appendChild(title)
         tr.appendChild(descr)
-        tr.appendChild(imgDiv)
         table.appendChild(tr)
     }
 }
