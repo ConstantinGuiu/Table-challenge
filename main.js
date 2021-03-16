@@ -229,7 +229,7 @@ function noResultsFound(noResults) {
 // keyboard friendly function that runs everytime the user presses a key
 function keyPressed(e) {
     userInputSelected = userInput === document.activeElement // check if the user has selected the search field already
-    // console.log(e.keyCode)
+    console.log(e.keyCode)
     if (e.keyCode == 39 && !modalOpened) {
         changePage('next') // Right arrow key - next table page
     } else if (e.keyCode == 37 && !modalOpened) {
@@ -238,10 +238,13 @@ function keyPressed(e) {
         changePage(1) // Home key - first table page
     } else if ((e.keyCode == 35 || e.keyCode == 40) && !modalOpened) {
         changePage('last') // End key - last table page
-    } else if (e.keyCode == 13) {
-        // userInput.focus()       // Enter key - select the search input
+    } else if (e.keyCode == 13 && modalOpened) {
+        addElement()       // Enter key - select the search input
     } else if (e.keyCode == 45) {
         openAddModal() // Insert key - add another element
+    } else if (e.keyCode == 27 && userInputSelected) {
+        userInput.value = ''    // on ESC key if search input is selected it empties its value
+        search()
     } else if (e.keyCode == 27) {
         closeModal()    // close the modal on ESC key
     } else if (e.keyCode == 70 && !modalOpened && !userInputSelected){
@@ -285,10 +288,10 @@ function addElement() {
         titleForm.value = ''
         descriptionForm.value = ''
         imageForm.value = ''
-        properData.unshift(newElement)
+        localRawData.unshift(newElement)
         userInput.value = ""
         closeModal()
-        showData()
+        search()
     } else {
         formWarn.style.display = "block"
     }
