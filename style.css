@@ -162,6 +162,20 @@ table img:hover {
     background-color: #1475a1;
 }
 
+#myForm{
+    width: 300px;
+    padding: 25px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.formInput{
+    width: 100%;
+}
+
 .noFocus:focus-within {
     outline: none;
 }

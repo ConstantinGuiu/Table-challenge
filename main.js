@@ -6,12 +6,16 @@ const perPageDiv = document.getElementById("perPage")
 const userInput = document.getElementById('search')
 const addBtn = document.getElementById('addElement')
 const totalResults = document.getElementById('totalResults')
+const titleForm = document.getElementById('titleForm')
+const descriptionForm = document.getElementById('descriptionForm')
+const imageForm = document.getElementById('imageForm')
 
 // declaring different variables
 let currentPage = 1 // default page of the table set to 1
 let totalPages // will assign a number of pages based on how much data needs to be shown
 let perPage = perPageDiv.value // will be used to show how many items will be shown on the table at once
 let locaRawlData // just a variable to keep the received data from the JSON
+let properData
 
 // add event listeners
 addBtn.addEventListener("click", openAddModal)
@@ -103,7 +107,6 @@ function processTable(data) {
     }
 
     let remainingRows = perPage - data.length
-    console.log(remainingRows)
     if (remainingRows != 0) {
         for (i = 0; i < remainingRows; i++) {
             let tr = document.createElement("tr");
@@ -222,13 +225,13 @@ function noResultsFound(noResults) {
 // keyboard friendly function that runs everytime the user presses a key
 function keyPressed(e) {
     // console.log(e.keyCode)
-    if (e.keyCode == 34) {
-        changePage('next') // PageDown key - next table page
-    } else if (e.keyCode == 33) {
-        changePage('prev') // PageUp key - previous table page
-    } else if (e.keyCode == 36) {
+    if (e.keyCode == 39) {
+        changePage('next') // Right arrow key - next table page
+    } else if (e.keyCode == 37) {
+        changePage('prev') // Left arrow key - previous table page
+    } else if (e.keyCode == 36 || e.keyCode == 38) {
         changePage(1) // Home key - first table page
-    } else if (e.keyCode == 35) {
+    } else if (e.keyCode == 35 || e.keyCode == 40) {
         changePage('last') // End key - last table page
     } else if (e.keyCode == 13) {
         // userInput.focus()       // Enter key - select the search input
@@ -243,5 +246,16 @@ function openAddModal() {
 }
 
 function addElement() {
-    console.log("added")
+    let title = titleForm.value
+    let descr = descriptionForm.value
+    let img = imageForm.value
+
+    let newElement = {
+        title: title,
+        description: descr,
+        imagePath: img
+    }
+
+    properData.unshift(newElement)
+    showData()
 }

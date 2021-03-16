@@ -49,12 +49,15 @@
         </div>
     </div>
     <button id="addElement"><span class="material-icons">add_circle_outline</span> Add element</button>
-    <form>
+    <div id="myForm">
         <label for="titleForm">Title</label>
-        <input name="title" type="text" id="titleForm">
+        <input class="formInput" name="title" type="text" id="titleForm">
         <label for="descriptionForm">Description</label>
-        <textarea name="description" type="text" id="descriptionForm"></textarea>
-    </form>
+        <textarea class="formInput" name="description" type="text" id="descriptionForm"></textarea>
+        <label for="imageForm">Image</label>
+        <input class="formInput" name="image" type="text" id="imageForm">
+        <button onclick="addElement()">Submit element</button>
+    </div>
 </body>
 <script src="main.js"></script>
 
