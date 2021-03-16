@@ -228,6 +228,7 @@ function noResultsFound(noResults) {
 
 // keyboard friendly function that runs everytime the user presses a key
 function keyPressed(e) {
+    userInputSelected = userInput === document.activeElement // check if the user has selected the search field already
     // console.log(e.keyCode)
     if (e.keyCode == 39 && !modalOpened) {
         changePage('next') // Right arrow key - next table page
@@ -242,7 +243,9 @@ function keyPressed(e) {
     } else if (e.keyCode == 45) {
         openAddModal() // Insert key - add another element
     } else if (e.keyCode == 27) {
-        closeModal()
+        closeModal()    // close the modal on ESC key
+    } else if (e.keyCode == 70 && !modalOpened && !userInputSelected){
+        setTimeout(focusSearch, 100)    // on F key press, focus the search input
     }
 }
 
@@ -254,11 +257,16 @@ function openAddModal() {
     fade.style.display = "block"
     form.style.zIndex = 1
     fade.style.zIndex = 1
-
+    
     form.classList.add("myFormDispalyed")
     fade.classList.add("pageFadeDisplayed")
-
+    
     titleForm.focus()
+}
+
+function focusSearch(){
+    userInput.focus()
+    userInput.value = ""
 }
 
 function addElement() {
@@ -278,6 +286,7 @@ function addElement() {
         descriptionForm.value = ''
         imageForm.value = ''
         properData.unshift(newElement)
+        userInput.value = ""
         closeModal()
         showData()
     } else {
