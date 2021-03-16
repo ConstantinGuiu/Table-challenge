@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="https://cdn.marketing.planday.com/website/favicon/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -62,6 +62,21 @@
         <button onclick="addElement()">Submit element</button>
     </div>
     <div id="pageFade" onclick="closeModal()"></div>
+    <div id="instructionsMain" class="instructionsHidden">
+        <div id="instructionsDiv">
+            <h2>Key shortcuts:</h2>
+            <ul>
+                <li><span class="material-icons">arrow_back</span> - previous table page</li>
+                <li><span class="material-icons">arrow_forward</span> - next table page</li>
+                <li><span class="material-icons">arrow_upward</span> - first table page</li>
+                <li><span class="material-icons">arrow_downward</span> - last table page</li>
+                <li><span>F</span> - search in table</li>
+                <li><span>Ins</span> - insert new element</li>
+                <li><span>Esc</span> - close modals or delete search field</li>
+            </ul>
+        </div>
+        <div id="questionDiv" onclick="toggleInstructions()"><span class="material-icons">help_center</span></div>
+    </div>
     <div id="footerDiv"></div>
 </body>
 <script src="main.js"></script>

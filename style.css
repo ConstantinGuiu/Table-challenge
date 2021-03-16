@@ -102,7 +102,6 @@ th {
     color: black;
 }
 
-
 .elementImage {
     width: 50px;
     height: 50px;
@@ -275,6 +274,73 @@ table img:hover {
 
 #footerDiv{
     height: 50px;
+}
+
+#instructionsMain{
+    position: fixed;
+    top: 50%;
+    left: 0;
+    display: flex;
+    transform: translateY(-70%);
+    transition-duration: .5s;
+}
+
+.instructionsHidden{
+    transform: translate(-300px, -70%) !important;
+}
+
+#instructionsDiv{
+    width: 300px;
+    background-color: white;
+    box-shadow: 0px 0px 8px rgb(206, 206, 206);
+    font-family: "Roboto";
+    padding: 30px 0;
+}
+
+#instructionsDiv h2{
+    font-size: 1.2rem;
+    margin: 10px;
+}
+
+#instructionsDiv li{
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+#instructionsDiv span{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid gray;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+#questionDiv{
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    color: #199bd7;
+    transform: translateY(50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgb(206, 206, 206);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#questionDiv:hover {
+    color: #1475a1;
 }
 
 @font-face {

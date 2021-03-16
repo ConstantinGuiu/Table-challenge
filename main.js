@@ -12,6 +12,7 @@ const imageForm = document.getElementById('imageForm')
 const form = document.getElementById("myForm")
 const fade = document.getElementById("pageFade")
 const formWarn = document.getElementById("formWarn")
+const instructions = document.getElementById("instructionsMain")
 
 // declaring different variables
 let currentPage = 1 // default page of the table set to 1
@@ -297,7 +298,9 @@ function addElement() {
     }
 }
 
-
+function toggleInstructions(){
+    instructions.classList.toggle("instructionsHidden")
+}
 
 function closeModal() {
     modalOpened = false
