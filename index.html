@@ -34,12 +34,12 @@
                 <p id="totalResults"></p>
             </div>
         </div>
-            <table id="mainTable">
-            </table>
-            <div id="noResultsFound">
-                <span class="material-icons">not_listed_location</span>
-                <p>Sorry! There is no item with that criteria yet...</p>
-            </div>
+        <table id="mainTable">
+        </table>
+        <div id="noResultsFound">
+            <span class="material-icons">not_listed_location</span>
+            <p>Sorry! There is no item with that criteria yet...</p>
+        </div>
         <div id="pagesButtons">
             <button onclick="changePage(1)" class="material-icons front-extremity">first_page</button>
             <button onclick="changePage('prev')" class="material-icons front-extremity">chevron_left</button>
@@ -49,16 +49,18 @@
         </div>
     </div>
     <button id="addElement"><span class="material-icons">add_circle_outline</span> Add element</button>
-    <div id="myForm">
-        <label for="titleForm">Title</label>
-        <input class="formInput" name="title" type="text" id="titleForm">
-        <label for="descriptionForm">Description</label>
-        <textarea class="formInput" name="description" type="text" id="descriptionForm"></textarea>
-        <label for="imageForm">Image</label>
-        <input class="formInput" name="image" type="text" id="imageForm">
-        <button onclick="addElement()">Submit element</button>
-    </div>
 </body>
+<div id="myForm">
+    <label for="titleForm">Title*</label>
+    <input class="formInput" name="title" type="text" id="titleForm">
+    <label for="descriptionForm">Description</label>
+    <textarea class="formInput" name="description" type="text" id="descriptionForm"></textarea>
+    <label for="imageForm">Image</label>
+    <input class="formInput" name="image" type="text" id="imageForm">
+    <p id="formWarn">Please add a title in order to submit!</p>
+    <button onclick="addElement()">Submit element</button>
+</div>
+<div id="pageFade" onclick="closeModal()"></div>
 <script src="main.js"></script>
 
 </html>
