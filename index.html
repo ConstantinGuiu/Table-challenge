@@ -18,8 +18,7 @@
     <div id="mainContent">
         <div id="tableOptions">
             <div>
-                <label for="search">Search:</label>
-                <input oninput="search()" type="text" id="search" class="noFocus">
+                <input oninput="search()" type="text" id="search" class="noFocus" placeholder="Search">
             </div>
             <div>
                 <p>Show</p>
@@ -35,12 +34,12 @@
                 <p id="totalResults"></p>
             </div>
         </div>
-        <table id="mainTable">
-        </table>
-        <div id="noResultsFound">
-            <span class="material-icons">not_listed_location</span>
-            <p>Sorry! There is no item with that criteria yet...</p>
-        </div>
+            <table id="mainTable">
+            </table>
+            <div id="noResultsFound">
+                <span class="material-icons">not_listed_location</span>
+                <p>Sorry! There is no item with that criteria yet...</p>
+            </div>
         <div id="pagesButtons">
             <button onclick="changePage(1)" class="material-icons front-extremity">first_page</button>
             <button onclick="changePage('prev')" class="material-icons front-extremity">chevron_left</button>
@@ -48,8 +47,8 @@
             <button onclick="changePage('next')" class="material-icons end-extremity">chevron_right</button>
             <button onclick="changePage('last')" class="material-icons end-extremity">last_page</button>
         </div>
-        <button id="addElement"><span class="material-icons">add_circle_outline</span> Add element</button>
     </div>
+    <button id="addElement"><span class="material-icons">add_circle_outline</span> Add element</button>
     <form>
         <label for="titleForm">Title</label>
         <input name="title" type="text" id="titleForm">

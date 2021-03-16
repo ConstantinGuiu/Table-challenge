@@ -5,6 +5,7 @@ const noResultsDiv = document.getElementById("noResultsFound")
 const perPageDiv = document.getElementById("perPage")
 const userInput = document.getElementById('search')
 const addBtn = document.getElementById('addElement')
+const totalResults = document.getElementById('totalResults')
 
 // declaring different variables
 let currentPage = 1 // default page of the table set to 1
@@ -38,12 +39,13 @@ function showData() {
     }
     // calculating the number of pages
     totalPages = Math.ceil(data.length / perPage)
-    
+    totalResults.innerHTML = data.length
+
     // keeping in the local data variable only the elements that needs to be shown
     let elementsToRemove = (currentPage - 1) * perPage
     data.splice(0, elementsToRemove)
     data.splice(perPage)
-    
+
     addPageButtons()
     processTable(data)
     stylePageBtns()
@@ -53,6 +55,7 @@ function changePerPage(x) {
     perPage = perPageDiv.value
     showData()
     addPageButtons()
+    changePage(1)
 }
 
 function processTable(data) {
@@ -68,6 +71,8 @@ function processTable(data) {
     // adding values for headers
     titleHeader.innerHTML = "Title"
     descrHeader.innerHTML = "Description"
+
+    thr.classList.add("headerRow")
 
     // appending table headers to the table row
     thr.appendChild(imageHeader)
@@ -86,6 +91,8 @@ function processTable(data) {
         title.innerHTML = data[i].title
         descr.innerHTML = data[i].description
 
+        tr.classList.add("dataRow")
+        title.classList.add("elementTitle")
         imgDiv.classList.add("elementImage")
         imgDiv.style.backgroundImage = `url(${data[i].imagePath})`
 
@@ -93,6 +100,24 @@ function processTable(data) {
         tr.appendChild(title)
         tr.appendChild(descr)
         table.appendChild(tr)
+    }
+
+    let remainingRows = perPage - data.length
+    console.log(remainingRows)
+    if (remainingRows != 0) {
+        for (i = 0; i < remainingRows; i++) {
+            let tr = document.createElement("tr");
+            let title = document.createElement('td')
+            let descr = document.createElement('td')
+            let imgDiv = document.createElement('td')
+
+            tr.classList.add("emptyRow")
+
+            tr.appendChild(imgDiv)
+            tr.appendChild(title)
+            tr.appendChild(descr)
+            table.appendChild(tr)
+        }
     }
 }
 
@@ -111,11 +136,11 @@ function addPageButtons() {
 // a function that changes the pages of the table based on a value
 function changePage(x) {
     if (x === 'prev') { // if the value is equal to 'prev'
-        if(currentPage>1){
+        if (currentPage > 1) {
             currentPage-- // it subtracts 1 from the currentPage variable
-        }    
+        }
     } else if (x === 'next') { // if the value is equal to 'next'
-        if(currentPage!==totalPages){
+        if (currentPage !== totalPages) {
             currentPage++ // it adds 1 from the currentPage variable
         }
     } else if (x === 'last') { // if the value is equal to 'next'
@@ -153,9 +178,8 @@ function stylePageBtns() {
     let numberedBtns = document.getElementById('allBtns').getElementsByTagName('button')
     for (i = 0; i < numberedBtns.length; i++) {
         if (i == currentPage - 1) {
-            numberedBtns[i].classList.add('selectedBtn')
-        } else {
-            numberedBtns[i].classList.remove('selectedBtn')
+            numberedBtns[i].style.backgroundColor = "#189AD6"
+            numberedBtns[i].style.color = "white"
         }
     }
 
@@ -173,11 +197,11 @@ function search() {
             properData.push(el)
         }
     });
-    if(userInputValue.length != 0){
+    if (userInputValue.length != 0) {
         if (properData.length === 0) {
             noResults = true
         }
-        
+
     } else {
         properData = localRawData
     }
@@ -187,8 +211,8 @@ function search() {
 }
 
 // function that shows or hide the "No results found" div based on a boolean value
-function noResultsFound(noResults){
-    if(noResults){
+function noResultsFound(noResults) {
+    if (noResults) {
         noResultsDiv.style.display = 'flex'
     } else {
         noResultsDiv.style.display = 'none'
@@ -198,25 +222,26 @@ function noResultsFound(noResults){
 // keyboard friendly function that runs everytime the user presses a key
 function keyPressed(e) {
     // console.log(e.keyCode)
-    if(e.keyCode == 34){
-        changePage('next')      // PageDown key - next table page
-    } else if (e.keyCode == 33){
-        changePage('prev')      // PageUp key - previous table page
-    } else if (e.keyCode == 36){
-        changePage(1)           // Home key - first table page
-    } else if (e.keyCode == 35){
-        changePage('last')      // End key - last table page
-    } else if (e.keyCode == 13){
+    if (e.keyCode == 34) {
+        changePage('next') // PageDown key - next table page
+    } else if (e.keyCode == 33) {
+        changePage('prev') // PageUp key - previous table page
+    } else if (e.keyCode == 36) {
+        changePage(1) // Home key - first table page
+    } else if (e.keyCode == 35) {
+        changePage('last') // End key - last table page
+    } else if (e.keyCode == 13) {
         // userInput.focus()       // Enter key - select the search input
-    } else if (e.keyCode == 45){
-        openAddModal()          // Insert key - add another element
+    } else if (e.keyCode == 45) {
+        openAddModal() // Insert key - add another element
     }
 }
 
 // add another element functions
-function openAddModal(){
+function openAddModal() {
     console.log("hey")
 }
-function addElement(){
+
+function addElement() {
     console.log("added")
 }

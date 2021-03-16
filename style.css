@@ -5,11 +5,16 @@
     margin: 0;
 }
 
+body {
+    background-color: rgb(245, 245, 245);
+}
+
 header {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #16222D;
+    margin-top: 50px;
 }
 
 header h1 {
@@ -29,15 +34,19 @@ header h2 {
 
 #mainContent {
     width: 500px;
-    margin: auto;
+    margin: 30px auto;
     font-family: avenirRoman;
+    background-color: #fff;
+    padding: 20px 20px;
+    box-shadow: 0px 0px 8px rgb(206, 206, 206);
+    border-radius: 4px;
 }
 
 #tableOptions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0 5px 0;
+    margin: 0 0 20px 0;
 }
 
 #tableOptions div {
@@ -45,14 +54,14 @@ header h2 {
     display: flex;
 }
 
-#search{
+#search {
     border: 1px solid #dadfe3;
     border-radius: 4px;
     background-color: rgb(242, 244, 245);
     text-indent: 5px;
 }
 
-#perPage{
+#perPage {
     border: 1px solid #dadfe3;
     border-radius: 4px;
     background-color: rgb(242, 244, 245);
@@ -63,21 +72,40 @@ header h2 {
     width: 40px;
 }
 
-table {
-    width: 100%;
+#totalResults {
+    margin-left: 5px;
 }
 
-th{
+#mainTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+th {
     text-align: left;
 }
 
+.emptyRow{
+    height: 51px;
+}
+
+.dataRow td {
+    border-bottom: 1px solid #dadfe3;
+}
+
+
 .elementImage {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 4px;
     transition-duration: .02s;
     background-size: cover;
     background-position: center;
+}
+
+.elementTitle {
+    text-indent: 20px;
 }
 
 table img:hover {
@@ -85,7 +113,16 @@ table img:hover {
 }
 
 #noResultsFound {
+    margin-top: 50px;
     display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#noResultsFound span {
+    font-size: 100px;
+    color: #189AD6;
 }
 
 #pagesButtons {
@@ -96,14 +133,33 @@ table img:hover {
 #pagesButtons button {
     height: 30px;
     width: 30px;
+    border: 1px solid #dadfe3;
+    border-radius: 4px;
+    background-color: rgb(242, 244, 245);
+    cursor: pointer;
 }
 
 #allBtns {
     display: flex;
 }
 
-.selectedBtn {
-    background-color: burlywood;
+#addElement {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    border-radius: 4px;
+    padding: 11px 30px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #199bd7;
+    border: none;
+    transition-duration: .15s;
+    cursor: pointer;
+}
+
+#addElement:hover{
+    background-color: #1475a1;
 }
 
 .noFocus:focus-within {
