@@ -195,9 +195,11 @@ function stylePageBtns() {
 
 // function that loops through all data and filter based on user input
 function search() {
-    properData = []
+    properData = [] // an array that will contain the data to be shown in the table
     let noResults = false
-    let userInputValue = userInput.value
+    let userInputValue = userInput.value // save the user input
+
+    // looping through all elements (including the ones added by the user) and check if they contain what the user inserted
     localRawData.forEach(el => {
         let checkTitle = el.title.toUpperCase().includes(userInputValue.toUpperCase())
         let checkDescr = el.description.toUpperCase().includes(userInputValue.toUpperCase())
@@ -205,6 +207,8 @@ function search() {
             properData.push(el)
         }
     });
+
+    // check if the user has typed anything and if the function found any element that fits
     if (userInputValue.length != 0) {
         if (properData.length === 0) {
             noResults = true
@@ -213,9 +217,12 @@ function search() {
     } else {
         properData = localRawData
     }
+
+    // the variable noResult has a default state as "false" but it gets "true" after checkups
+    // calling the function "noResultFound" with the boolean state so it will show No results found in the specific case
     noResultsFound(noResults)
-    showData()
-    changePage(1)
+    showData() // show the data on the table
+    changePage(1) // changing to page 1 of the table
 }
 
 // function that shows or hide the "No results found" div based on a boolean value
@@ -230,7 +237,7 @@ function noResultsFound(noResults) {
 // keyboard friendly function that runs everytime the user presses a key
 function keyPressed(e) {
     userInputSelected = userInput === document.activeElement // check if the user has selected the search field already
-    console.log(e.keyCode)
+    // console.log(e.keyCode)
     if (e.keyCode == 39 && !modalOpened) {
         changePage('next') // Right arrow key - next table page
     } else if (e.keyCode == 37 && !modalOpened) {
@@ -240,57 +247,67 @@ function keyPressed(e) {
     } else if ((e.keyCode == 35 || e.keyCode == 40) && !modalOpened) {
         changePage('last') // End key - last table page
     } else if (e.keyCode == 13 && modalOpened) {
-        addElement()       // Enter key - select the search input
+        addElement() // Enter key - select the search input
     } else if (e.keyCode == 45) {
         openAddModal() // Insert key - add another element
     } else if (e.keyCode == 27 && userInputSelected) {
-        userInput.value = ''    // on ESC key if search input is selected it empties its value
+        userInput.value = '' // on ESC key if search input is selected it empties its value
         search()
     } else if (e.keyCode == 27) {
-        closeModal()    // close the modal on ESC key
-    } else if (e.keyCode == 70 && !modalOpened && !userInputSelected){
-        setTimeout(focusSearch, 100)    // on F key press, focus the search input
+        closeModal() // close the modal on ESC key
+    } else if (e.keyCode == 70 && !modalOpened && !userInputSelected) {
+        setTimeout(focusSearch, 100) // on F key press, focus the search input
     }
 }
 
 // add another element functions
 function openAddModal() {
-    modalOpened = true
-    formWarn.style.display = "none"
+    modalOpened = true // assigning the true state for the variable so we can use it later
+    formWarn.style.display = "none" // in case we had the empty title warning, now we hide it
     form.style.display = "block"
     fade.style.display = "block"
     form.style.zIndex = 1
     fade.style.zIndex = 1
-    
+
+    // adding classes in order to show the modal with the form and the "fade filter" over the page
     form.classList.add("myFormDispalyed")
     fade.classList.add("pageFadeDisplayed")
-    
+
+    // just preselect the title field, so the user can type directly the title
     titleForm.focus()
 }
 
-function focusSearch(){
+function focusSearch() {
     userInput.focus()
     userInput.value = ""
 }
 
 function addElement() {
+    // getting values from the input fields
     const title = titleForm.value
     const descr = descriptionForm.value
     const img = imageForm.value
 
+    //checking if the user inserted any title
     if (title.length > 0) {
         formWarn.style.display = "none"
+        // creating an object and assigning it to a variable
         const newElement = {
             title: title,
             description: descr,
             imagePath: img
         }
 
+        // emptying all the input fields in case the user wants to add anothe element
         titleForm.value = ''
         descriptionForm.value = ''
         imageForm.value = ''
+        userInput.value = ''
+
         localRawData.unshift(newElement)
-        userInput.value = ""
+
+        // calling functions to close the modal and searching again in the table
+        // the purpose for this search is to "regenerate" the table with the new data
         closeModal()
         search()
     } else {
@@ -298,14 +315,24 @@ function addElement() {
     }
 }
 
-function toggleInstructions(){
+// show or hide the instructions tab
+function toggleInstructions() {
     instructions.classList.toggle("instructionsHidden")
 }
 
+function goToGit() {
+    window.open('https://github.com/ConstantinGuiu/Table-challenge')
+}
+
 function closeModal() {
-    modalOpened = false
+    modalOpened = false // assigning the false state for the variable
+
+    // removing the classes that were displaying the modal
     form.classList.remove("myFormDispalyed")
     fade.classList.remove("pageFadeDisplayed")
+
+    // waiting for the hide animations to finish (opacity from 100% to 0%)
+    // then moving the elements behind our content
     setTimeout(200)
     form.style.zIndex = -1
     fade.style.zIndex = -1
